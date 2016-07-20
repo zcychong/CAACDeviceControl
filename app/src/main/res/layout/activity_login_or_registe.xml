@@ -32,7 +32,8 @@
             android:layout_marginLeft="10dp"
             android:text="@string/login"
             android:onClick="onClick"
-            android:background="@color/translation_white"/>
+            style="@style/ButtonStyle"
+            />
         <Button
             android:id="@+id/btn_registe"
             android:layout_width="0dp"
@@ -42,6 +43,6 @@
             android:layout_marginLeft="10dp"
             android:text="@string/registe"
             android:onClick="registe"
-            android:background="@color/translation_white"/>
+            />
     </LinearLayout>
 </LinearLayout>
