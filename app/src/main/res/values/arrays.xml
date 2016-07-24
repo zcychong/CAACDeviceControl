@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="group_list">
+        <item>请选择科室:</item>
+        <item>科室一</item>
+        <item>科室二</item>
+        <item>科室三</item>
+        <item>科室四</item>
+        <item>科室五</item>
+    </string-array>
+</resources>
