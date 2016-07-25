@@ -11,13 +11,15 @@
     <string name="registe">注册</string>
     <string name="login_hint">用户名/手机号</string>
     <string name="password_hint">密码</string>
-    <string name="nick_name">昵  称:</string>
-    <string name="real_name">姓  名:</string>
-    <string name="group">科  室:</string>
-    <string name="phone_number">手  机:</string>
-    <string name="password">密   码:</string>
+    <string name="nick_name">昵&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;称:</string>
+    <string name="real_name">姓&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;名:</string>
+    <string name="group">科&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;室:</string>
+    <string name="phone_number">手&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;机:</string>
+    <string name="password">密&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;码:</string>
     <string name="photo">头像</string>
     <string name="commit_passeord">确认密码:</string>
 
-
+    <string name="exception_dynamics">故障动态</string>
+    <string name="group_dynamics">科室动态</string>
+    <string name="add_dynamics">发布动态</string>
 </resources>

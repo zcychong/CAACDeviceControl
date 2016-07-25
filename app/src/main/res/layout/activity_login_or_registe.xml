@@ -8,7 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    android:background="@mipmap/login_bg"
+    android:background="@mipmap/login_or_registe_bg"
     tools:context="com.caac.android.caacdevicecontrol.LoginOrRegisteActivity">
     <ImageView
         android:layout_width="300dp"
@@ -32,7 +32,7 @@
             android:layout_marginLeft="10dp"
             android:text="@string/login"
             android:onClick="onClick"
-            style="@style/ButtonStyle"
+
             />
         <Button
             android:id="@+id/btn_registe"
