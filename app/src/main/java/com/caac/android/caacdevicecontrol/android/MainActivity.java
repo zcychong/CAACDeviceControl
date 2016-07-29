@@ -1,25 +1,55 @@
-package com.caac.android.caacdevicecontrol;
+package com.caac.android.caacdevicecontrol.android;
 
+import android.app.Activity;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+
+import com.caac.android.caacdevicecontrol.R;
+import com.caac.android.caacdevicecontrol.fragment.ExceptionDynamicsFragment;
+import com.caac.android.caacdevicecontrol.fragment.GroupDynamicsFragment;
+import com.caac.android.caacdevicecontrol.fragment.MyFragmentPgerAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private Activity context;
+    private ViewPager vpList;
+    private MyFragmentPgerAdapter myFragmentPgerAdapter;
+    private List<Fragment> fragments = new ArrayList<>();
+    private ExceptionDynamicsFragment exceptionDynamicsFragment;
+    private GroupDynamicsFragment groupDynamicsFragment;
+
+    private LinearLayout llException, llGroup, llAdd;
+    private ImageView ivException, ivGroup;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        initView();
+
+    }
+
+    private void initView(){
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -40,6 +70,44 @@ public class MainActivity extends BaseActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        // 初始化Fragment
+        exceptionDynamicsFragment = new ExceptionDynamicsFragment();
+        groupDynamicsFragment = new GroupDynamicsFragment();
+
+        if(exceptionDynamicsFragment == null){
+            Log.e(TAG, "null");
+        }
+        fragments.add(exceptionDynamicsFragment);
+        fragments.add(groupDynamicsFragment);
+        vpList = (ViewPager)findViewById(R.id.vp_list);
+        myFragmentPgerAdapter = new MyFragmentPgerAdapter(getSupportFragmentManager(), fragments);
+        vpList.setAdapter(myFragmentPgerAdapter);
+
+        //初始化按钮
+        llException = (LinearLayout)findViewById(R.id.ll_exception);
+        llException.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ivException.setImageResource(R.mipmap.icon_exception_choosed);
+                ivGroup.setImageResource(R.mipmap.icon_group_unchoose);
+                vpList.setCurrentItem(0);
+            }
+        });
+        llAdd = (LinearLayout)findViewById(R.id.ll_add);
+        llGroup = (LinearLayout)findViewById(R.id.ll_group);
+        llGroup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                vpList.setCurrentItem(1);
+                ivException.setImageResource(R.mipmap.icon_exception_unchoose);
+                ivGroup.setImageResource(R.mipmap.icon_group_choosed);
+            }
+        });
+
+        ivException = (ImageView) findViewById(R.id.iv_exceptiom);
+        ivGroup = (ImageView) findViewById(R.id.iv_group);
+
     }
 
     @Override

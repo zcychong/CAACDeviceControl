@@ -5,47 +5,55 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.caac.android.caacdevicecontrol.MainActivity"
+    tools:context=".android.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
+
     <LinearLayout
+        android:id="@+id/ll_tab_host"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="56dp"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
+        android:background="@color/gary_bg"
         >
         <LinearLayout
+            android:id="@+id/ll_exception"
             android:layout_width="0dp"
-            android:layout_height="60dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_gravity="bottom"
             android:orientation="vertical">
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:layout_gravity="top"
                 android:background="@color/gary_line"/>
             <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginTop="5dp"
+                android:id="@+id/iv_exceptiom"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginTop="6dp"
                 android:src="@mipmap/icon_exception_choosed"
                 android:layout_gravity="center"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
                 android:layout_gravity="center_horizontal"
-                android:text="@string/exception_dynamics"/>
+                android:text="@string/exception_dynamics"
+                android:textColor="@color/gary_black"
+                android:textSize="12sp"/>
         </LinearLayout>
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@color/gary_line"/>
-        <RelativeLayout
+
+        <LinearLayout
+            android:id="@+id/ll_add"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_gravity="bottom"
+            android:orientation="vertical"
             >
             <View
                 android:layout_width="match_parent"
@@ -53,27 +61,26 @@
                 android:background="@color/gary_line"/>
             <ImageView
                 android:id="@+id/iv_add"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="10dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="6dp"
                 android:src="@mipmap/icon_add"
-                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/iv_add"
-                android:layout_centerHorizontal="true"
-                android:text="@string/add_dynamics"/>
+                android:layout_gravity="center"
+                android:text="@string/add_dynamics"
+                android:textColor="@color/gary_black"
+                android:textSize="12sp"/>
 
-        </RelativeLayout>
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@color/gary_line"/>
+        </LinearLayout>
+
         <LinearLayout
+            android:id="@+id/ll_group"
             android:layout_width="0dp"
-            android:layout_height="60dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_gravity="bottom"
             android:orientation="vertical">
@@ -82,9 +89,10 @@
                 android:layout_height="1dp"
                 android:background="@color/gary_line"/>
             <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginTop="5dp"
+                android:id="@+id/iv_group"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_marginTop="7dp"
                 android:src="@mipmap/icon_group_unchoose"
                 android:layout_gravity="center"
                 />
@@ -92,7 +100,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="@string/group_dynamics"/>
+                android:layout_marginTop="3dp"
+                android:text="@string/group_dynamics"
+                android:textColor="@color/gary_black"
+                android:textSize="12sp"/>
         </LinearLayout>
     </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_list"
+       android:layout_above="@id/ll_tab_host"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v4.view.ViewPager>
+
 </RelativeLayout>

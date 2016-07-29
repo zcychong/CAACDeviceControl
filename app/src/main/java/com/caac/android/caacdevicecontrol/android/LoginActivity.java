@@ -1,4 +1,4 @@
-package com.caac.android.caacdevicecontrol;
+package com.caac.android.caacdevicecontrol.android;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,6 +6,13 @@ import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Toast;
+
+import com.caac.android.caacdevicecontrol.R;
+import com.caac.android.caacdevicecontrol.entity.User;
+
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.SaveListener;
 
 public class LoginActivity extends BaseActivity {
     private final String TAG = getClass().getSimpleName();
@@ -39,6 +46,20 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(context, MainActivity.class));
+//                User user = new User();
+//                user.setUserName("11");
+//                user.setPassword("11");
+//                user.save(new SaveListener<String>() {
+//                    @Override
+//                    public void done(String s, BmobException e) {
+//                        if(e==null){
+//                            Toast.makeText(context, "添加数据成功，s=" + s , Toast.LENGTH_SHORT).show();
+//                        }else{
+//                            Toast.makeText(context, "创建数据失败：" + e.getMessage(), Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//                });
+
             }
         });
     }

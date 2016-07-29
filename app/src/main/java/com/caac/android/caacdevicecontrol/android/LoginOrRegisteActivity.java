@@ -1,4 +1,4 @@
-package com.caac.android.caacdevicecontrol;
+package com.caac.android.caacdevicecontrol.android;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,10 +6,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 
-public class LoginOrRegisteActivity extends AppCompatActivity {
+import com.caac.android.caacdevicecontrol.R;
+
+import cn.bmob.v3.Bmob;
+import cn.bmob.v3.BmobConfig;
+
+public class LoginOrRegisteActivity extends BaseActivity {
     private final String TAG = getClass().getSimpleName();
     private Activity context;
     private AppCompatButton btnLogin;
@@ -22,6 +26,9 @@ public class LoginOrRegisteActivity extends AppCompatActivity {
 
         context = this;
         initView();
+
+        //初始化Bomb
+        initBmob();
     }
 
     private void initView(){
@@ -34,6 +41,21 @@ public class LoginOrRegisteActivity extends AppCompatActivity {
         });
 
         btnRegiste = (Button)findViewById(R.id.btn_registe);
+    }
+
+    private void initBmob(){
+        //第二：自v3.4.7版本开始,设置BmobConfig,允许设置请求超时时间、文件分片上传时每片的大小、文件的过期时间(单位为秒)，
+        BmobConfig config =new BmobConfig.Builder(context)
+        //设置appkey
+        .setApplicationId("a16b1f5be547a96723fdb27602fa6840")
+        //请求超时时间（单位为秒）：默认15s
+        .setConnectTimeout(20)
+        //文件分片上传时每片的大小（单位字节），默认512*1024
+        .setUploadBlockSize(1024*1024)
+        //文件的过期时间(单位为秒)：默认1800s
+        .setFileExpiration(2500)
+        .build();
+        Bmob.initialize(config);
     }
 
 

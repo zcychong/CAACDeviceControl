@@ -9,7 +9,12 @@
     <color name="colorPrimaryDark">#FF49AADB</color>
     <color name="colorAccent">#3F51B5</color>
 
-    <color name="gary_line">#7d7d7d</color>
-
     <color name="translation_white">#66FFFFFF</color>
+
+
+    <color name="gary_line">#ABABAB</color>
+
+
+    <color name="gary_black">#777A77</color>
+    <color name="gary_bg">#DDDDDD</color>
 </resources>

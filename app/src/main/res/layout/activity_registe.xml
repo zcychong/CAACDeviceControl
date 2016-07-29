@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@mipmap/registe_bg"
-    tools:context="com.caac.android.caacdevicecontrol.RegisteActivity">
+    tools:context=".android.RegisteActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -41,6 +41,7 @@
                     android:text="@string/nick_name"
                     android:textSize="18sp"/>
                 <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/et_username"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="10dp"
@@ -60,6 +61,7 @@
                     android:text="@string/real_name"
                     android:textSize="18sp"/>
                 <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/et_real_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="10dp"
@@ -81,7 +83,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-                    <Spinner
+                    <android.support.v7.widget.AppCompatSpinner
+                        android:id="@+id/sp_group"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
@@ -89,7 +92,7 @@
                         android:padding="5dp"
                         android:entries="@array/group_list"
                         android:visibility="gone">
-                    </Spinner>
+                    </android.support.v7.widget.AppCompatSpinner>
 
                     <android.support.v7.widget.AppCompatSpinner
                         android:layout_width="match_parent"
@@ -120,6 +123,7 @@
                     android:text="@string/phone_number"
                     android:textSize="18sp"/>
                 <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/et_phone_number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="10dp"
@@ -138,6 +142,7 @@
                     android:text="@string/password"
                     android:textSize="18sp"/>
                 <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/et_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="10dp"
@@ -158,6 +163,7 @@
                     android:text="@string/commit_passeord"
                     android:textSize="18sp"/>
                 <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/et_commit_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="10dp"
@@ -168,6 +174,7 @@
             </LinearLayout>
 
             <android.support.v7.widget.AppCompatButton
+                android:id="@+id/acbtn_commit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
