@@ -1,47 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:shawn="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp">
+    android:layout_margin="5dp"
+    >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <ImageView
-            android:id="@+id/iv_first_img"
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:minHeight="160dp"
-            android:maxHeight="200dp"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/default_img"
-            />
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/iv_first_img"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:minHeight="160dp"
+                android:maxHeight="200dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/default_image_8"
+                />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:orientation="horizontal">
+                <com.caac.android.caacdevicecontrol.view.CircleImageView
+                    android:id="@+id/civ_avatar"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    shawn:civ_border_color="@android:color/white"
+                    shawn:civ_border_width="2dp"
+                    android:src="@mipmap/icon_default_avatar"
+                    />
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_alignBottom="@id/civ_avatar"
+                    android:layout_toRightOf="@id/civ_avatar"
+                    android:layout_margin="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="18sp"
+                    android:text="发布人姓名"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_grouop"
+                    android:layout_alignBottom="@id/civ_avatar"
+                    android:layout_margin="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:textSize="18sp"
+                    android:text="上报科室"
+                    />
+            </RelativeLayout>
+
+        </LinearLayout>
         <TextView
             android:id="@+id/tv_text"
             android:layout_margin="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="22sp"
+            android:textSize="18sp"
+            android:text="你们说：一根筷子放在杯子里从外面看筷子是折断的其实是完整的，这说明人们的“眼见未必为实”；又说花是红色的，因为眼睛看到的是红色的，太阳能把石头晒热因为自己摸到“热”了"
             />
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            >
             <TextView
+                android:id="@+id/tv_time"
                 android:layout_margin="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="发起人:xxx"
+                android:text="2016/8/1"
                 android:textSize="18sp"/>
             <TextView
+                android:id="@+id/tv_leave_message_count"
                 android:layout_margin="5dp"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="right"
-                android:text="所属科室:xxx"
+                android:layout_alignParentRight="true"
+                android:drawablePadding="5dp"
+                android:drawableLeft="@mipmap/icon_leave_message"
+                android:text="3"
                 android:textSize="18sp"/>
-        </LinearLayout>
+        </RelativeLayout>
 
     </LinearLayout>
 

@@ -20,14 +20,14 @@
         android:maxHeight="180dp"
         android:minHeight="120dp"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:src="@mipmap/icon_default_avatar" />
+        android:src="@mipmap/default_avatar" />
 
     <TextView
         android:id="@+id/rl_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="张三"
+        android:text="滕希龙"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="18sp"
         android:textColor="@android:color/white"/>
@@ -37,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="18757175009"
+        android:text="15695385166"
         android:textSize="18sp"
         android:textColor="@android:color/white"/>
     <TextView

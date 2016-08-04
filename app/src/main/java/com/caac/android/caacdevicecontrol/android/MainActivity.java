@@ -1,6 +1,7 @@
 package com.caac.android.caacdevicecontrol.android;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -44,7 +45,7 @@ public class MainActivity extends BaseActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        context = this;
         initView();
 
     }
@@ -95,6 +96,12 @@ public class MainActivity extends BaseActivity
             }
         });
         llAdd = (LinearLayout)findViewById(R.id.ll_add);
+        llAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityForResult(new Intent(context, ReleaseDynamicActivity.class), 0);
+            }
+        });
         llGroup = (LinearLayout)findViewById(R.id.ll_group);
         llGroup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,10 +162,6 @@ public class MainActivity extends BaseActivity
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
 
         }
 

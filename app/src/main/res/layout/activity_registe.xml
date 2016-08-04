@@ -91,18 +91,9 @@
                         android:layout_marginTop="5dp"
                         android:padding="5dp"
                         android:entries="@array/group_list"
-                        android:visibility="gone">
+                        >
                     </android.support.v7.widget.AppCompatSpinner>
 
-                    <android.support.v7.widget.AppCompatSpinner
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:padding="5dp"
-                        android:entries="@array/group_list">
-
-                    </android.support.v7.widget.AppCompatSpinner>
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"

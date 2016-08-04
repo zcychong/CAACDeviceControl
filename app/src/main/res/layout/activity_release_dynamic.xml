@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.caac.android.caacdevicecontrol.android.ReleaseDynamicActivity"
+    android:orientation="vertical">
+
+    <include layout="@layout/my_app_bar"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="第一步:"
+                android:textSize="20sp"
+                android:textColor="@color/gary_black"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:padding="5dp"
+                android:gravity="start"
+                android:hint="请输入故障信息"
+                android:background="@drawable/edit_frame"
+                android:textSize="18sp"
+                android:textColor="@color/gary_black"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="第二步:"
+            android:textSize="20sp"
+            android:textColor="@color/gary_black"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/iv_add_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:padding="5dp"
+                    android:src="@mipmap/icon_add_dynamic_image"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-10dp"
+                    android:layout_gravity="center_horizontal"
+                    android:text="添加照片"
+                    android:textSize="14sp"
+                    android:textColor="@color/gary_black"
+                    />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="或"
+                android:textSize="22sp"
+                android:textColor="@color/gary_black"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/iv_add_video"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:padding="5dp"
+                    android:src="@mipmap/icon_add_video"
+                    />
+                <TextView
+                    android:id="@+id/iv_add_video"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-10dp"
+                    android:layout_gravity="center_horizontal"
+                    android:text="添加视频"
+                    android:textSize="14sp"
+                    android:textColor="@color/gary_black"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="注:只能添加1~6张照片,或者添加一段视频"
+            android:textSize="14sp"
+            android:textColor="@color/gary_black"/>
+        <GridLayout
+            android:id="@+id/gl_image_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="3"
+            >
+
+        </GridLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="第三步:"
+            android:textSize="20sp"
+            android:textColor="@color/gary_black"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+
+                android:text="请选择上报科室:"
+                android:textSize="16sp"
+                android:textColor="@color/gary_black"/>
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/sp_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:gravity="center_horizontal"
+                android:entries="@array/group_list"
+                >
+            </android.support.v7.widget.AppCompatSpinner>
+
+        </LinearLayout>
+
+        <android.support.v7.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="20dp"
+            android:text="发布"
+            android:textSize="20sp"
+            android:textColor="@color/gary_black"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>
