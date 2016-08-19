@@ -20,7 +20,12 @@
     <string name="commit_passeord">确认密码:</string>
 
     <!-- 注册 -->
-    <string name="usernma_not_null">昵称不能为空哦!</string>
+    <string name="username_not_null">昵称不能为空哦!</string>
+    <string name="realname_not_null">姓名不能为空哦!</string>
+    <string name="phonenumber_not_null">电话不能为空哦!</string>
+    <string name="password_not_null">密码不能为空哦!</string>
+    <string name="password_not_equal">两次输入的密码不相同哦!</string>
+    <string name="group_not_null">科室不能为空哦!</string>
 
     <string name="exception_dynamics">故障动态</string>
     <string name="group_dynamics">科室动态</string>

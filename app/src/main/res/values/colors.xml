@@ -14,7 +14,9 @@
 
     <color name="gary_line">#ABABAB</color>
 
+    <color name="light_black">#444444</color>
 
     <color name="gary_black">#777A77</color>
     <color name="gary_bg">#DDDDDD</color>
+    <color name="image_gray">#a9b7b7</color>
 </resources>

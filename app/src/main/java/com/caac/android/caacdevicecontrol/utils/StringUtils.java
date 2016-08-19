@@ -6,11 +6,11 @@ package com.caac.android.caacdevicecontrol.utils;
 public class StringUtils {
     public static boolean isEmpty(String str){
         if(str != null){
-            if(!str.isEmpty() || str.length() == 0){
-                return false;
+            if(str.isEmpty() || str.length() == 0){
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     public static boolean isNotEmpty(String str){

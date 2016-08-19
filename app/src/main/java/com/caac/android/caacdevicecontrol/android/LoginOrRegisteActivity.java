@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.caac.android.caacdevicecontrol.R;
+import com.caac.android.caacdevicecontrol.entity.User;
+import com.caac.android.caacdevicecontrol.utils.SharedPreferencesUtils;
 
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobConfig;
@@ -29,6 +31,8 @@ public class LoginOrRegisteActivity extends BaseActivity {
 
         //初始化Bomb
         initBmob();
+
+        initData();
     }
 
     private void initView(){
@@ -61,5 +65,16 @@ public class LoginOrRegisteActivity extends BaseActivity {
 
     public void registe(View v){
         startActivity(new Intent(this, RegisteActivity.class));
+    }
+
+    private void initData(){
+        User user = User.getCurrentUser(User.class);
+        if(user != null){
+            finish();
+            SharedPreferencesUtils.setParam(context, "userId", user.getObjectId());
+            startActivity(new Intent(context, MainActivity.class));
+        }else{
+            //缓存用户对象为空时， 可打开用户注册界面…
+        }
     }
 }
