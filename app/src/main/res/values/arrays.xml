@@ -40,4 +40,44 @@
         <item>运营管理部-综合办公室</item>
         <item>运营管理部-信息中心</item>
     </string-array>
+
+    <string-array name="group_list_no_hint">
+        <item>综合业务室</item>
+        <item>党群工作部</item>
+        <item>安全航务部</item>
+        <item>规划经营部</item>
+        <item>财务部</item>
+        <item>总经理办公室</item>
+        <item>人力资源部</item>
+        <item>航务分公司-酒店餐饮部</item>
+        <item>航务分公司-地面运输部</item>
+        <item>航务分公司-客票销售部</item>
+        <item>航务分公司-安质部</item>
+        <item>航务分公司-企划部</item>
+        <item>航务分公司-贵宾服务部</item>
+        <item>航务分公司-财务部</item>
+        <item>航务分公司-经理部</item>
+        <item>候机楼管理部-商贸中心</item>
+        <item>候机楼管理部-机电中心</item>
+        <item>机场管理部-绿化保洁队</item>
+        <item>机场管理部-水暖站</item>
+        <item>机场管理部-电力灯光站</item>
+        <item>安检护卫部-监护大队</item>
+        <item>安检护卫部-消防大队</item>
+        <item>安检护卫部-安检二大队</item>
+        <item>安检护卫部-安检一大队</item>
+        <item>安检护卫部-技术培训中心</item>
+        <item>安检护卫部-综合办公室</item>
+        <item>地勤保障部-机务工程部</item>
+        <item>地勤保障部-特种车队</item>
+        <item>地勤保障部-旅客运输部</item>
+        <item>地勤保障部-经理部</item>
+        <item>运营管理部-服务质量中心</item>
+        <item>运营管理部-通信导航中心</item>
+        <item>运营管理部-急救中心</item>
+        <item>运营管理部-场务队</item>
+        <item>运营管理部-指挥中心</item>
+        <item>运营管理部-综合办公室</item>
+        <item>运营管理部-信息中心</item>
+    </string-array>
 </resources>

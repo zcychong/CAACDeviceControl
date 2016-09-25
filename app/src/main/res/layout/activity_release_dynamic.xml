@@ -81,43 +81,12 @@
                         />
                 </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="或"
-                    android:textSize="22sp"
-                    android:textColor="@color/gary_black"/>
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <ImageView
-                        android:id="@+id/iv_add_video"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:padding="5dp"
-                        android:src="@mipmap/icon_add_video"
-                        />
-                    <TextView
-                        android:id="@+id/tv_add_video"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="-10dp"
-                        android:layout_gravity="center_horizontal"
-                        android:text="添加视频"
-                        android:textSize="14sp"
-                        android:textColor="@color/gary_black"
-                        />
-
-                </LinearLayout>
 
             </LinearLayout>
 
             <GridView
                 android:id="@+id/gv_image_list"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:numColumns="3"
                 android:horizontalSpacing="10dp"
@@ -128,7 +97,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="注:只能添加1~6张照片,或者添加一段视频"
+                android:text="注:\n1.只能添加1~6张照片\n2.长按可删除图片"
                 android:textSize="14sp"
                 android:textColor="@color/gary_black"/>
 

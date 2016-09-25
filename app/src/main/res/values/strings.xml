@@ -18,6 +18,7 @@
     <string name="password">密&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;码:</string>
     <string name="photo">头像</string>
     <string name="commit_passeord">确认密码:</string>
+    <string name="change_passeord">修改密码</string>
 
     <!-- 注册 -->
     <string name="username_not_null">昵称不能为空哦!</string>

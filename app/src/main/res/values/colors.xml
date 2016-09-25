@@ -19,4 +19,6 @@
     <color name="gary_black">#777A77</color>
     <color name="gary_bg">#DDDDDD</color>
     <color name="image_gray">#a9b7b7</color>
+
+    <color name="default_bg">#F1F1F1</color>
 </resources>

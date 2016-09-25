@@ -205,7 +205,7 @@ public class MainActivity extends BaseActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_user_info) {
-            // Handle the camera action
+            startActivity(new Intent(context, UserInfoActivity.class));
         } else if (id == R.id.nav_trouble_count) {
 
         } else if (id == R.id.nav_sign_out) {
