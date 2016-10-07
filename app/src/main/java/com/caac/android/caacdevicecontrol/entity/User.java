@@ -8,6 +8,7 @@ import cn.bmob.v3.BmobUser;
 public class User extends BmobUser {
     private String realName;
     private String group;
+    private String avatar;
 
 
     public String getRealName() {
@@ -26,4 +27,11 @@ public class User extends BmobUser {
         this.group = group;
     }
 
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
 }

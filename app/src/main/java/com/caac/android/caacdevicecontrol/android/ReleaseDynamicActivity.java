@@ -12,6 +12,7 @@ import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.util.Log;
@@ -29,16 +30,21 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.caac.android.caacdevicecontrol.R;
+import com.caac.android.caacdevicecontrol.entity.Dynamic;
+import com.caac.android.caacdevicecontrol.entity.User;
 import com.caac.android.caacdevicecontrol.utils.ImageUtils;
+import com.caac.android.caacdevicecontrol.utils.StringUtils;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UploadFileListener;
 
 public class ReleaseDynamicActivity extends BaseActivity {
@@ -48,6 +54,7 @@ public class ReleaseDynamicActivity extends BaseActivity {
     private ImageView ivAddVideo;
     private ImageView ivAddImage;
     private LinearLayout llAddChoose;
+    private AppCompatButton acbtnCommit;
     private AppCompatSpinner aspinGroup;
     private GridView glImageList;
     private static int REQUEST_CODE_CAPTURE_CAMEIA = 0;
@@ -58,6 +65,9 @@ public class ReleaseDynamicActivity extends BaseActivity {
     private Bitmap addBitmap;
     private List<String> imagePathList = new ArrayList<>();
 
+    private User user;
+
+    private String group;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,12 +77,18 @@ public class ReleaseDynamicActivity extends BaseActivity {
 
         initView();
 
+        initData();
+        user = User.getCurrentUser(User.class);
+
     }
 
     private void initView() {
         glImageList = (GridView) findViewById(R.id.gv_image_list);
         ivAddImage = (ImageView) findViewById(R.id.iv_add_image);
         llAddChoose = (LinearLayout)findViewById(R.id.ll_add_choose);
+        etMeessage = (EditText)findViewById(R.id.et_message);
+        aspinGroup = (AppCompatSpinner)findViewById(R.id.sp_group);
+        acbtnCommit = (AppCompatButton)findViewById(R.id.acbtn_commit);
 
         adapter = new ReleaseDynamicAdapter();
         glImageList.setAdapter(adapter);
@@ -92,6 +108,68 @@ public class ReleaseDynamicActivity extends BaseActivity {
                 showChooseDialog();
             }
         });
+
+        aspinGroup.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                group = getResources().getStringArray(R.array.group_list_no_hint)[position];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
+        acbtnCommit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                checkInfo();
+
+            }
+        });
+    }
+
+    private void initData(){
+        addBitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.icon_add_image);
+    }
+
+    private void checkInfo(){
+        if(etMeessage.getText() != null){
+            if(etMeessage.getText().toString().length() <= 0){
+                toast("请输入故障信息!");
+                return;
+            }
+        }
+
+        if(StringUtils.isEmpty(group)){
+            toast("请选择上报科室!");
+            return;
+        }
+
+        Dynamic dy = new Dynamic();
+        dy.setUserId(user.getObjectId());
+        dy.setAvatar(user.getAvatar());
+        dy.setUserName(user.getUsername());
+        dy.setGroup(user.getGroup());
+        dy.setImages(imagePathList);
+        dy.setLeaveMsgCount(0);
+        dy.setMessage(etMeessage.getText().toString());
+
+        dy.save(new SaveListener<String>() {
+            @Override
+            public void done(String s, BmobException e) {
+                if(e==null){ // 发布成功
+                    toast("发布成功!");
+                    finish();
+                }else{
+                    Log.i("bmob","失败："+e.getMessage()+","+e.getErrorCode());
+                }
+            }
+        });
+
     }
 
     private void showChooseDialog(){
@@ -101,12 +179,13 @@ public class ReleaseDynamicActivity extends BaseActivity {
         builder.setSingleChoiceItems(items, 0, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
                 if (i == 0) {
                     getImageFromCamera();
-                    dialogInterface.dismiss();
+
                 } else if (i == 1) {
                     getImageFromAlbum();
-                    dialogInterface.dismiss();
+
                 }
             }
         });
@@ -136,12 +215,24 @@ public class ReleaseDynamicActivity extends BaseActivity {
         if(resultCode == RESULT_OK){
             if (requestCode == REQUEST_CODE_PICK_IMAGE) {
                 if(data != null ){
+                    llAddChoose.setVisibility(View.GONE);
                     Uri uri = data.getData();
-                    Bitmap bitmap = ImageUtils.getimage(uri + ".jpg");
+                    Log.e(TAG, "uri=" + uri);
+//                    Bitmap bitmap = ImageUtils.getimage(uri + ".jpg");
+                    Bitmap bitmap = null;
+                    try {
+                        bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), data.getData());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     saveImage(bitmap, Environment.getExternalStorageDirectory()+"/image.jpg");
                     if(bitmapList.size() != 0){
                         bitmapList.remove( bitmapList.size() - 1);
                     }
+                    bitmapList.add(bitmap);
+                    bitmapList.add(addBitmap);
+                    adapter.notifyDataSetChanged();
+
                     final BmobFile bmobFile = new BmobFile(new File(Environment.getExternalStorageDirectory()+"/image.jpg"));
                     bmobFile.upload(new UploadFileListener() {
                         @Override
@@ -164,10 +255,7 @@ public class ReleaseDynamicActivity extends BaseActivity {
                     bitmapList.remove( bitmapList.size() - 1);
                 }
                 bitmapList.add(bitmap);
-                if(bitmapList.size() > 1){
-                    bitmapList.remove(bitmapList.size() -1);
-                }
-                addBitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.icon_add_image);
+
                 bitmapList.add(addBitmap);
                 adapter.notifyDataSetChanged();
 
@@ -221,16 +309,23 @@ public class ReleaseDynamicActivity extends BaseActivity {
         }
 
         @Override
-        public View getView(final int positoon, View view, ViewGroup viewGroup) {
-            Log.e("positoon", positoon + "");
+        public View getView(final int posotion, View view, ViewGroup viewGroup) {
+            Log.e("posotion", posotion + "");
             if(view == null){
                 view = LayoutInflater.from(context).inflate(R.layout.dynamic_item, null);
                 viewHolder = new ViewHolder();
                 viewHolder.ivImage = (ImageView)view.findViewById(R.id.iv_image);
 
-                viewHolder.ivImage.setOnLongClickListener(new View.OnLongClickListener() {
+                view.setTag(viewHolder);
+            }else{
+                viewHolder = (ViewHolder)view.getTag();
+            }
+
+            if(posotion != bitmapList.size() - 1){
+                viewHolder.ivImage.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public boolean onLongClick(View view) {
+                    public void onClick(View view) {
+
                         AlertDialog.Builder builder = new AlertDialog.Builder(context);
                         builder.setTitle("提示!");
                         builder.setMessage("确定删除这张图片吗?");
@@ -238,24 +333,26 @@ public class ReleaseDynamicActivity extends BaseActivity {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 dialogInterface.dismiss();
-                                bitmapList.remove(positoon);
+                                bitmapList.remove(posotion);
                                 notifyDataSetChanged();
                                 checkHasImage();
                             }
                         });
                         builder.create().show();
-                        return true;
                     }
                 });
 
-                view.setTag(viewHolder);
-            }else{
-                viewHolder = (ViewHolder)view.getTag();
+            }else {
+                viewHolder.ivImage.setOnClickListener(new View.OnClickListener() {
+                      @Override
+                      public void onClick(View view) {
+                          showChooseDialog();
+                      }
+                });
+
             }
 
-
-
-            viewHolder.ivImage.setImageBitmap(bitmapList.get(positoon));
+            viewHolder.ivImage.setImageBitmap(bitmapList.get(posotion));
 
             return view;
         }
@@ -271,6 +368,10 @@ public class ReleaseDynamicActivity extends BaseActivity {
         }else{
             llAddChoose.setVisibility(View.VISIBLE);
         }
+    }
+
+    private void toast(String str){
+        Toast.makeText(context, str, Toast.LENGTH_SHORT).show();
     }
 
 }

@@ -2,10 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-
     android:gravity="bottom"
     android:orientation="vertical"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,23 +16,20 @@
         android:paddingTop="@dimen/activity_vertical_margin"
         android:background="@drawable/side_nav_bar"
         >
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <com.caac.android.caacdevicecontrol.view.CircleImageView
+            android:id="@+id/civ_avatar"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_gravity="center_horizontal"
-            android:adjustViewBounds="true"
-            android:maxHeight="180dp"
-            android:minHeight="120dp"
             android:paddingTop="@dimen/nav_header_vertical_spacing"
-            android:src="@mipmap/default_avatar" />
+            android:src="@mipmap/default_avatar"
+            />
 
         <TextView
             android:id="@+id/tv_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/nav_header_vertical_spacing"
-            android:text="大笨蛋"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="18sp"
             android:textColor="@android:color/white"/>
@@ -42,7 +39,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="15695385166"
             android:textSize="18sp"
             android:textColor="@android:color/white"/>
         <TextView
@@ -50,7 +46,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="运营管理部-信息中心"
             android:textSize="18sp"
             android:textColor="@android:color/white"/>
 

@@ -21,12 +21,16 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.caac.android.caacdevicecontrol.R;
 import com.caac.android.caacdevicecontrol.entity.User;
 import com.caac.android.caacdevicecontrol.fragment.ExceptionDynamicsFragment;
 import com.caac.android.caacdevicecontrol.fragment.GroupDynamicsFragment;
 import com.caac.android.caacdevicecontrol.fragment.MyFragmentPgerAdapter;
 import com.caac.android.caacdevicecontrol.utils.ActivityController;
+import com.caac.android.caacdevicecontrol.utils.ImageUtils;
+import com.caac.android.caacdevicecontrol.utils.StringUtils;
+import com.caac.android.caacdevicecontrol.view.CircleImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,8 +47,10 @@ public class MainActivity extends BaseActivity
 
     private LinearLayout llException, llGroup, llAdd;
     private ImageView ivException, ivGroup;
+    private CircleImageView civAvatar;
     private TextView tvTabException, tvTabGroup;
     private View heardView;
+    private User user;
 
     private TextView tvUserName, tvGroup, tvPhoneNumber;
     @Override
@@ -79,9 +85,19 @@ public class MainActivity extends BaseActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         heardView = navigationView.inflateHeaderView(R.layout.nav_header_main);
+        civAvatar = (CircleImageView)heardView.findViewById(R.id.civ_avatar);
         tvUserName = (TextView)heardView.findViewById(R.id.tv_name);
         tvPhoneNumber = (TextView)heardView.findViewById(R.id.tv_phone);
         tvGroup = (TextView)heardView.findViewById(R.id.tv_group);
+
+        user = User.getCurrentUser(User.class);
+        tvUserName.setText(user.getUsername());
+        tvPhoneNumber.setText(user.getMobilePhoneNumber());
+        tvGroup.setText(user.getGroup());
+
+        if(StringUtils.isNotEmpty(user.getAvatar())){
+            Glide.with(context).load(user.getAvatar()).into(civAvatar);
+        }
 
 
         // 初始化Fragment

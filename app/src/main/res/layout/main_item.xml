@@ -70,8 +70,10 @@
             android:layout_margin="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:minHeight="50dp"
             android:textSize="18sp"
-            android:text="你们说：一根筷子放在杯子里从外面看筷子是折断的其实是完整的，这说明人们的“眼见未必为实”；又说花是红色的，因为眼睛看到的是红色的，太阳能把石头晒热因为自己摸到“热”了"
+            android:text="热了"
             android:textColor="@color/light_black"
             />
         <RelativeLayout
