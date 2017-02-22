@@ -35,7 +35,12 @@ public class MainItemAdapter extends BaseQuickAdapter<Dynamic> {
                 .setText(R.id.tv_text, item.getMessage())
                 .setText(R.id.tv_leave_message_count, String.valueOf(item.getLeaveMsgCount()));
         ImageView iv = (ImageView)helper.getView(R.id.iv_first_img);
-        Glide.with(mContext).load(item.getImages().get(0)).into(iv);
+        if(item.getImages() != null){
+            if(item.getImages().size() > 0){
+                Glide.with(mContext).load(item.getImages().get(0)).into(iv);
+            }
+        }
+
 
         CircleImageView civAvatar = (CircleImageView)helper.getView(R.id.civ_avatar);
         Glide.with(mContext).load(item.getAvatar()).into(civAvatar);
