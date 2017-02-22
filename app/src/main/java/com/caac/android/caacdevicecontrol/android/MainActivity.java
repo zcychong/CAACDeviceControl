@@ -31,6 +31,7 @@ import com.caac.android.caacdevicecontrol.utils.ActivityController;
 import com.caac.android.caacdevicecontrol.utils.ImageUtils;
 import com.caac.android.caacdevicecontrol.utils.StringUtils;
 import com.caac.android.caacdevicecontrol.view.CircleImageView;
+import com.caac.android.caacdevicecontrol.view.ExchangeColorView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +52,9 @@ public class MainActivity extends BaseActivity
     private TextView tvTabException, tvTabGroup;
     private View heardView;
     private User user;
+
+    private ExchangeColorView ecExcwption, ecGroup;
+    private List<ExchangeColorView> exchangeColorViewList = new ArrayList<>();
 
     private TextView tvUserName, tvGroup, tvPhoneNumber;
     @Override
@@ -90,6 +94,26 @@ public class MainActivity extends BaseActivity
         tvPhoneNumber = (TextView)heardView.findViewById(R.id.tv_phone);
         tvGroup = (TextView)heardView.findViewById(R.id.tv_group);
 
+        ecExcwption = (ExchangeColorView)findViewById(R.id.ec_exception_dynamics);
+        ecGroup = (ExchangeColorView)findViewById(R.id.ec_group_dynamics);
+        exchangeColorViewList.add(ecExcwption);
+        exchangeColorViewList.add(ecGroup);
+        ecExcwption.setIconAlpha(1.0f);
+
+        ecExcwption.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                vpList.setCurrentItem(0);
+            }
+        });
+
+        ecGroup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                vpList.setCurrentItem(1);
+            }
+        });
+
         user = User.getCurrentUser(User.class);
         tvUserName.setText(user.getUsername());
         tvPhoneNumber.setText(user.getMobilePhoneNumber());
@@ -111,13 +135,21 @@ public class MainActivity extends BaseActivity
         fragments.add(groupDynamicsFragment);
 
 
+
         vpList = (ViewPager)findViewById(R.id.vp_list);
         myFragmentPgerAdapter = new MyFragmentPgerAdapter(getSupportFragmentManager(), fragments);
         vpList.setAdapter(myFragmentPgerAdapter);
         vpList.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
+                //监听滑动事件, 滑动的位置--->自定义控件的颜色透明度
+                if(positionOffset > 0){
+                    ExchangeColorView left =  exchangeColorViewList.get(position);
+                    ExchangeColorView right =  exchangeColorViewList.get(position+1);
+                    //positionOffset:划出去的偏移量(0~1)
+                    left.setIconAlpha(1-positionOffset);
+                    right.setIconAlpha(positionOffset);
+                }
             }
 
             @Override
