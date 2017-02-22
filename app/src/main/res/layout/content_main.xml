@@ -15,7 +15,7 @@
         android:layout_height="56dp"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
-        android:background="@color/gary_bg"
+        android:background="@color/gary_default_bg"
         >
         <LinearLayout
             android:id="@+id/ll_exception"
@@ -23,7 +23,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_gravity="bottom"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -48,35 +49,7 @@
                 android:textSize="12sp"/>
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/ll_add"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_gravity="bottom"
-            android:orientation="vertical"
-            >
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/gary_line"/>
-            <ImageView
-                android:id="@+id/iv_add"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="6dp"
-                android:src="@mipmap/icon_add"
-                android:layout_gravity="center"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/add_dynamics"
-                android:textColor="@color/gary_black"
-                android:textSize="12sp"/>
 
-        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/ll_group"
@@ -84,7 +57,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_gravity="bottom"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -107,11 +81,73 @@
                 android:textColor="@color/gary_black"
                 android:textSize="12sp"/>
         </LinearLayout>
+
+        <com.caac.android.caacdevicecontrol.view.ExchangeColorView
+            android:id="@+id/ec_exception_dynamics"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:ecv_text="@string/exception_dynamics"
+            app:ecv_icon="@mipmap/icon_exception_unchoose"
+            app:ecv_text_size="14sp"
+            app:ecv_color="@color/colorPrimary"
+            android:background="?selectableItemBackgroundBorderless"
+            />
+        <LinearLayout
+            android:id="@+id/ll_add"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_gravity="bottom"
+            android:orientation="vertical"
+            android:background="?selectableItemBackgroundBorderless"
+            >
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gary_line"
+                android:visibility="gone"/>
+            <ImageView
+                android:id="@+id/iv_add"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="4dp"
+                android:src="@mipmap/icon_add"
+                android:layout_gravity="center"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/add_dynamics"
+                android:textColor="@color/light_black"
+                android:textSize="14sp"/>
+
+        </LinearLayout>
+        <com.caac.android.caacdevicecontrol.view.ExchangeColorView
+            android:id="@+id/ec_group_dynamics"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:ecv_text="@string/group_dynamics"
+            app:ecv_icon="@mipmap/icon_group_unchoose"
+            app:ecv_text_size="14sp"
+            app:ecv_color="@color/colorPrimary"
+            android:background="?selectableItemBackgroundBorderless"/>
+
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_line"
+        android:layout_above="@id/ll_tab_host"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gary_bg"/>
+
 
     <android.support.v4.view.ViewPager
         android:id="@+id/vp_list"
-       android:layout_above="@id/ll_tab_host"
+        android:layout_above="@id/iv_line"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

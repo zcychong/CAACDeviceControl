@@ -6,4 +6,11 @@
         <attr name="civ_border_overlay" format="boolean" />
         <attr name="civ_fill_color" format="color" />
     </declare-styleable>
+    
+    <declare-styleable name="ExchangeColorView">
+        <attr name="ecv_icon" format="reference"/>
+        <attr name="ecv_text" format="string"/>
+        <attr name="ecv_color" format="color"/>
+        <attr name="ecv_text_size" format="dimension"/>
+    </declare-styleable>
 </resources>
