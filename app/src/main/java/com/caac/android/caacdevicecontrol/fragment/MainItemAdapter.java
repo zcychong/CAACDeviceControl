@@ -2,6 +2,7 @@ package com.caac.android.caacdevicecontrol.fragment;
 
 
 import android.content.Context;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -38,7 +39,11 @@ public class MainItemAdapter extends BaseQuickAdapter<Dynamic> {
         if(item.getImages() != null){
             if(item.getImages().size() > 0){
                 Glide.with(mContext).load(item.getImages().get(0)).into(iv);
+            }else{
+                iv.setVisibility(View.GONE);
             }
+        }else{
+            iv.setVisibility(View.GONE);
         }
 
 

@@ -23,7 +23,6 @@
                 android:minHeight="160dp"
                 android:maxHeight="200dp"
                 android:scaleType="centerCrop"
-                android:src="@mipmap/default_image_8"
                 />
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -96,11 +95,20 @@
                 android:layout_alignParentRight="true"
                 android:drawablePadding="5dp"
                 android:drawableLeft="@mipmap/icon_leave_message"
-                android:text="3"
+                android:text="0"
                 android:gravity="top"
                 android:textSize="18sp"
                 android:textColor="@color/light_black"
                 />
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animation_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/tv_leave_message_count"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:duplicateParentState="true"
+                android:src="@mipmap/icon_leave_message"/>
         </RelativeLayout>
 
     </LinearLayout>

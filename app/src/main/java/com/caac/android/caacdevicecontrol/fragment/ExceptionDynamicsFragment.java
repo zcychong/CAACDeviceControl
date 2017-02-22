@@ -176,7 +176,7 @@ public class ExceptionDynamicsFragment extends Fragment implements BaseQuickAdap
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-
+                Log.e(TAG, "刷新");
                 BmobQuery<Dynamic> query = new BmobQuery<Dynamic>();
                 query.setLimit(10);
                 query.findObjects(new FindListener<Dynamic>() {

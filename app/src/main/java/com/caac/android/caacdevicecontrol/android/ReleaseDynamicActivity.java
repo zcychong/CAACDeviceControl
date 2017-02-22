@@ -163,6 +163,7 @@ public class ReleaseDynamicActivity extends BaseActivity {
             public void done(String s, BmobException e) {
                 if(e==null){ // 发布成功
                     toast("发布成功!");
+                    setResult(1);
                     finish();
                 }else{
                     Log.i("bmob","失败："+e.getMessage()+","+e.getErrorCode());
