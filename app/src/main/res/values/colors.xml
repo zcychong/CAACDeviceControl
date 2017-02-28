@@ -4,6 +4,7 @@
     <!--<color name="colorPrimaryDark">#303F9F</color>-->
     <!--<color name="colorAccent">#FF4081</color>-->
 
+    <color name="white">#FFFFFF</color>
     <color name="yellow">#FADC1A</color>
     <color name="colorPrimary">#FF6ACCFD</color>
     <color name="colorPrimaryDark">#FF49AADB</color>

@@ -104,11 +104,12 @@
                 android:id="@+id/animation_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
                 android:layout_toLeftOf="@id/tv_leave_message_count"
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
                 android:duplicateParentState="true"
-                android:src="@mipmap/icon_leave_message"/>
+                />
         </RelativeLayout>
 
     </LinearLayout>

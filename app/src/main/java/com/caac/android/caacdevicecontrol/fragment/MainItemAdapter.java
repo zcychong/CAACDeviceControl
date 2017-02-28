@@ -5,9 +5,12 @@ import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.airbnb.lottie.LottieAnimationView;
+import com.airbnb.lottie.LottieComposition;
 import com.bumptech.glide.Glide;
 import com.caac.android.caacdevicecontrol.R;
 import com.caac.android.caacdevicecontrol.entity.Dynamic;
+import com.caac.android.caacdevicecontrol.utils.StringUtils;
 import com.caac.android.caacdevicecontrol.view.CircleImageView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -46,6 +49,23 @@ public class MainItemAdapter extends BaseQuickAdapter<Dynamic> {
             iv.setVisibility(View.GONE);
         }
 
+        final String assetName = StringUtils.ANIMATION_HEART;
+        final LottieAnimationView laview = (LottieAnimationView)helper.getView(R.id.animation_view);
+        LottieComposition.fromAssetFileName(mContext, assetName,
+                new LottieComposition.OnCompositionLoadedListener() {
+                    @Override
+                    public void onCompositionLoaded(LottieComposition composition) {
+                        laview.setComposition(composition);
+                    }
+                });
+        laview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!laview.isAnimating()){
+                    laview.playAnimation();
+                }
+            }
+        });
 
         CircleImageView civAvatar = (CircleImageView)helper.getView(R.id.civ_avatar);
         Glide.with(mContext).load(item.getAvatar()).into(civAvatar);

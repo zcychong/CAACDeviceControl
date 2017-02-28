@@ -1,8 +1,11 @@
 package com.caac.android.caacdevicecontrol.android;
 
+import android.animation.Animator;
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -10,6 +13,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,10 +23,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.airbnb.lottie.LottieAnimationView;
+import com.airbnb.lottie.LottieComposition;
 import com.bumptech.glide.Glide;
 import com.caac.android.caacdevicecontrol.R;
 import com.caac.android.caacdevicecontrol.entity.User;
@@ -35,6 +44,7 @@ import com.caac.android.caacdevicecontrol.view.ExchangeColorView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.Inflater;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -262,6 +272,62 @@ public class MainActivity extends BaseActivity
 //        return super.onOptionsItemSelected(item);
 //    }
 
+    private void showLoadingDialog(){
+        Context appContext = getApplicationContext();
+        final WindowManager wm = (WindowManager)appContext.getSystemService(Context.WINDOW_SERVICE);
+
+
+        final WindowManager.LayoutParams params = new WindowManager.LayoutParams();
+        // 类型
+        params.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
+        // WindowManager.LayoutParams.TYPE_SYSTEM_ALERT
+        // 设置flag
+        int flags = WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM;
+        // | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
+        // 如果设置了WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE，弹出的View收不到Back键的事件
+//        params.flags = flags;
+        // 不设置这个弹出框的透明遮罩显示为黑色
+        params.format = PixelFormat.TRANSLUCENT;
+//        params.alpha = 100;
+        // FLAG_NOT_TOUCH_MODAL不阻塞事件传递到后面的窗口
+        // 设置 FLAG_NOT_FOCUSABLE 悬浮窗口较小时，后面的应用图标由不可长按变为可长按
+        // 不设置这个flag的话，home页的划屏会有问题
+        params.width = WindowManager.LayoutParams.MATCH_PARENT;
+        params.height = WindowManager.LayoutParams.MATCH_PARENT;
+        params.gravity = Gravity.CENTER;
+
+        String assetName = "data.json";
+        View view = LayoutInflater.from(appContext).inflate(R.layout.window_loading, null);
+//        view.setBackgroundResource(android.R.color.transparent);
+        final LottieAnimationView laViewLoading = (LottieAnimationView)view.findViewById(R.id.lav_loading);
+        laViewLoading.loop(true);
+        LottieComposition.fromAssetFileName(appContext, assetName,
+                new LottieComposition.OnCompositionLoadedListener() {
+                    @Override
+                    public void onCompositionLoaded(LottieComposition composition) {
+                        laViewLoading.setComposition(composition);
+                    }
+                });
+        if(!laViewLoading.isAnimating()){
+            laViewLoading.playAnimation();
+        }
+
+        view.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if(laViewLoading.isAnimating()){
+                    laViewLoading.pauseAnimation();
+                }
+                wm.removeViewImmediate(view);
+
+                return true;
+            }
+        });
+
+        wm.addView(view, params);
+
+    }
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -271,7 +337,7 @@ public class MainActivity extends BaseActivity
         if (id == R.id.nav_user_info) {
             startActivity(new Intent(context, UserInfoActivity.class));
         } else if (id == R.id.nav_trouble_count) {
-
+            showLoadingDialog();
         } else if (id == R.id.nav_sign_out) {
             signOut();
         }
